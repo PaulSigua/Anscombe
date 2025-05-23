@@ -1,0 +1,77 @@
+---
+title: "Clase_2 DataSaurus 2025 con compilador R Markdown"
+author: "mateo"
+date: "2025-04-03"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+### Librerias necesarias
+
+```{r pressure, echo=FALSE}
+library(tidyverse)
+library(datasauRus)
+library(dplyr)
+library(ggplot2)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+### Dataset para el análisis de datos
+
+```{r libraries}
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    std_dev_x = sd(x),
+    std_dev_y = sd(y),
+    corr_x_y = cor(x,y)
+  )
+```
+
+### Gráfica generada
+
+```{r grapich} 
+
+ggplot(datasaurus_dozen, aes(x=x, y=y, colour = dataset))+
+  geom_point()+
+  theme_void()+
+  theme(legend.position = "none")+
+  facet_wrap(~dataset, ncol = 3)
+```
+
+```{r regrecion}
+
+# Cálculos estadísticos opcionales
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    std_dev_x = sd(x),
+    std_dev_y = sd(y),
+    corr_x_y = cor(x,y)
+  )
+
+# Gráfico de regresión lineal solo para 'slant_down'
+datasaurus_dozen %>%
+  filter(dataset == "slant_down") %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point(color = "dodgerblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 1) +
+  labs(title = "Regresión lineal - slant_down",
+       x = "x",
+       y = "y") +
+  theme_minimal()
+```
