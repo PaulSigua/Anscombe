@@ -35,3 +35,5 @@ Esta paradoja estadística subraya la importancia de no depender únicamente de 
 - **`Datasets/`**: Contiene los conjuntos de datos utilizados en el análisis, incluyendo el Cuarteto de Anscombe y el conjunto Datasaurus.
 - **`Python/`**: Carpeta que contiene el análisis de regresión lineal realizado con la herramienta seleccionada.
 - **`R/`**: Scripts en R utilizados para visualizar y analizar los datasets junto con sus pdf y html.
+
+## MINERIA DE DATOS
