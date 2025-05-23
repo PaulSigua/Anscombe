@@ -259,4 +259,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# more
+share
+.share
+
 # End of https://www.toptal.com/developers/gitignore/api/venv,linux,windows,macos,python
